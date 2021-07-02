@@ -20,7 +20,7 @@ namespace Microsoft.Maui.Controls.Handlers
 
 		public override void SetVirtualView(IView view)
 		{
-			_shellView = new ShellView(ContextWithValidation());
+			_shellView = new ShellView(Context);
 			_shellView.SetVirtualView((Shell)view);
 			base.SetVirtualView(view);
 		}

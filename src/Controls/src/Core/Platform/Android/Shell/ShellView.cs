@@ -300,11 +300,11 @@ namespace Microsoft.Maui.Controls.Platform
 				AColor color;
 				if (appearance != null)
 				{
-					color = appearance.BackgroundColor.ToNative(Color.FromHex("#03A9F4"));
+					color = appearance.BackgroundColor.ToNative(Color.FromArgb("#03A9F4"));
 				}
 				else
 				{
-					color = Color.FromHex("#03A9F4").ToNative();
+					color = Color.FromArgb("#03A9F4").ToNative();
 				}
 
 				if (!(decorView.Background is SplitDrawable splitDrawable) ||

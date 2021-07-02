@@ -24,13 +24,6 @@ namespace Microsoft.Maui.Handlers
 			return viewGroup;
 		}
 
-		protected override void SetupDefaults(PageViewGroup nativeView)
-		{
-			base.SetupDefaults(nativeView);
-			//DefaultBackgroundColor = nativeView.bac
-			var defaultBGColor = nativeView.Background;
-		}
-
 		public override void SetVirtualView(IView view)
 		{
 			base.SetVirtualView(view);
