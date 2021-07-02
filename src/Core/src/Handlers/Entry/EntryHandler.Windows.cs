@@ -29,11 +29,16 @@ using Windows.System;
 			handler.NativeView?.UpdateTextColor(entry);
 		}
 
-		[MissingMapper]
-		public static void MapIsPassword(IViewHandler handler, IEntry entry) { }
+		public static void MapIsPassword(EntryHandler handler, IEntry entry) 
+		{
+			handler.NativeView?.UpdateIsPassword(entry);
+		}
 
 		[MissingMapper]
 		public static void MapHorizontalTextAlignment(IViewHandler handler, IEntry entry) { }
+		
+		[MissingMapper]
+		public static void MapVerticalTextAlignment(IViewHandler handler, IEntry entry) { }
 
 		[MissingMapper]
 		public static void MapIsTextPredictionEnabled(IViewHandler handler, IEntry entry) { }
@@ -65,8 +70,10 @@ using Windows.System;
 			handler.NativeView?.UpdateReturnType(entry);
 		}
 
-		[MissingMapper]
-		public static void MapClearButtonVisibility(IViewHandler handler, IEntry entry) { }
+		public static void MapClearButtonVisibility(EntryHandler handler, IEntry entry)
+		{
+			handler.NativeView?.UpdateClearButtonVisibility(entry);
+		}
 
 		public static void MapCharacterSpacing(EntryHandler handler, IEntry entry)
 		{
@@ -83,7 +90,7 @@ using Windows.System;
 
 			if (VirtualView?.ReturnType == ReturnType.Next)
 			{
-				FocusManager.TryMoveFocus(FocusNavigationDirection.Next);
+				NativeView?.TryMoveFocus(FocusNavigationDirection.Next);
 			}
 			else
 			{
@@ -92,5 +99,11 @@ using Windows.System;
 
 			VirtualView?.Completed();
 		}
+
+		[MissingMapper]
+		public static void MapCursorPosition(IViewHandler handler, IEntry entry) { }
+
+		[MissingMapper]
+		public static void MapSelectionLength(IViewHandler handler, IEntry entry) { }
 	}
 }

@@ -70,7 +70,17 @@ namespace Microsoft.Maui
 			if (paint.IsNullOrEmpty())
 				nativeView.Background = defaultBackground;
 			else
-				nativeView.Background = paint!.ToDrawable();
+			{
+				if (paint is SolidPaint solidPaint)
+				{
+					Color backgroundColor = solidPaint.Color;
+
+					if (backgroundColor != null)
+						nativeView.SetBackgroundColor(backgroundColor.ToNative());
+				}
+				else
+					nativeView.Background = paint!.ToDrawable();
+			}
 		}
 
 		public static void UpdateOpacity(this AView nativeView, IView view)
@@ -105,7 +115,6 @@ namespace Microsoft.Maui
 			if (semantics == null)
 				return;
 
-			nativeView.ContentDescription = semantics.Description;
 			ViewCompat.SetAccessibilityHeading(nativeView, semantics.IsHeading);
 		}
 
@@ -131,5 +140,15 @@ namespace Microsoft.Maui
 				nativeView.RequestLayout();
 			}
 		}
+
+		public static void RemoveFromParent(this AView view)
+		{
+			if (view == null)
+				return;
+			if (view.Parent == null)
+				return;
+			((ViewGroup)view.Parent).RemoveView(view);
+		}
+
 	}
 }
