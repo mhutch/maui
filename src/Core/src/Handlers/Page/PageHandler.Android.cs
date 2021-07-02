@@ -1,10 +1,13 @@
 ﻿using System;
 using Android.Views;
+using Microsoft.Maui.Graphics;
 
 namespace Microsoft.Maui.Handlers
 {
 	public partial class PageHandler : ViewHandler<IPage, PageViewGroup>
 	{
+		//Graphics.Color? DefaultBackgroundColor;
+
 		protected override PageViewGroup CreateNativeView()
 		{
 			if (VirtualView == null)
@@ -19,6 +22,13 @@ namespace Microsoft.Maui.Handlers
 			};
 
 			return viewGroup;
+		}
+
+		protected override void SetupDefaults(PageViewGroup nativeView)
+		{
+			base.SetupDefaults(nativeView);
+			//DefaultBackgroundColor = nativeView.bac
+			var defaultBGColor = nativeView.Background;
 		}
 
 		public override void SetVirtualView(IView view)

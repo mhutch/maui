@@ -206,62 +206,13 @@ namespace Microsoft.Maui.Controls.Compatibility.Platform.Android.FastRenderers
 		}
 
 		void SetContentDescription()
-			=> SetContentDescription(Control, Element, _defaultContentDescription, _defaultHint);
+			=> Controls.Platform.AutomationPropertiesProvider.SetContentDescription(Control, Element, _defaultContentDescription, _defaultHint);
 
 		void SetFocusable()
-			=> SetFocusable(Control, Element, ref _defaultFocusable, ref _defaultImportantForAccessibility);
+			=> Controls.Platform.AutomationPropertiesProvider.SetFocusable(Control, Element, ref _defaultFocusable, ref _defaultImportantForAccessibility);
 
 		void SetLabeledBy()
-			=> SetLabeledBy(Control, Element);
-
-		internal static void AccessibilitySettingsChanged(AView control, Element element, string _defaultHint, string _defaultContentDescription, ref bool? _defaultFocusable, ref ImportantForAccessibility? _defaultImportantForAccessibility)
-		{
-			SetHint(control, element, _defaultHint);
-			SetAutomationId(control, element);
-			SetContentDescription(control, element, _defaultContentDescription, _defaultHint);
-			SetFocusable(control, element, ref _defaultFocusable, ref _defaultImportantForAccessibility);
-			SetLabeledBy(control, element);
-		}
-
-		internal static void AccessibilitySettingsChanged(AView control, Element element)
-		{
-			string _defaultHint = String.Empty;
-			string _defaultContentDescription = String.Empty;
-			bool? _defaultFocusable = null;
-			ImportantForAccessibility? _defaultImportantForAccessibility = null;
-			AccessibilitySettingsChanged(control, element, _defaultHint, _defaultContentDescription, ref _defaultFocusable, ref _defaultImportantForAccessibility);
-		}
-
-
-		internal static string ConcatenateNameAndHelpText(BindableObject Element)
-		{
-			var name = (string)Element.GetValue(AutomationProperties.NameProperty);
-			var helpText = (string)Element.GetValue(AutomationProperties.HelpTextProperty);
-
-			if (string.IsNullOrWhiteSpace(name))
-				return helpText;
-			if (string.IsNullOrWhiteSpace(helpText))
-				return name;
-
-			return $"{name}. {helpText}";
-		}
-
-		internal static void SetupDefaults(AView control, ref string defaultContentDescription)
-		{
-			string hint = null;
-			SetupDefaults(control, ref defaultContentDescription, ref hint);
-		}
-
-		internal static void SetupDefaults(AView control, ref string defaultContentDescription, ref string defaultHint)
-		{
-			if (defaultContentDescription == null)
-				defaultContentDescription = control.ContentDescription;
-
-			if (control is TextView textView && defaultHint == null)
-			{
-				defaultHint = textView.Hint;
-			}
-		}
+			=> Controls.Platform.AutomationPropertiesProvider.SetLabeledBy(Control, Element);
 
 		bool _defaultsSet;
 		void SetupDefaults()
@@ -270,7 +221,7 @@ namespace Microsoft.Maui.Controls.Compatibility.Platform.Android.FastRenderers
 				return;
 
 			_defaultsSet = true;
-			SetupDefaults(Control, ref _defaultHint, ref _defaultContentDescription);
+			Controls.Platform.AutomationPropertiesProvider.SetupDefaults(Control, ref _defaultHint, ref _defaultContentDescription);
 		}
 
 		void OnElementChanged(object sender, VisualElementChangedEventArgs e)
@@ -286,7 +237,7 @@ namespace Microsoft.Maui.Controls.Compatibility.Platform.Android.FastRenderers
 			}
 
 			SetupDefaults();
-			AccessibilitySettingsChanged(Control, Element, _defaultHint, _defaultContentDescription, ref _defaultFocusable, ref _defaultImportantForAccessibility);
+			Controls.Platform.AutomationPropertiesProvider.AccessibilitySettingsChanged(Control, Element, _defaultHint, _defaultContentDescription, ref _defaultFocusable, ref _defaultImportantForAccessibility);
 		}
 
 		void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)

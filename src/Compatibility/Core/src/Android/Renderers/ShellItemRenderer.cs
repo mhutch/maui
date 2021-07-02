@@ -277,7 +277,7 @@ namespace Microsoft.Maui.Controls.Compatibility.Platform.Android
 			if (id == MoreTabId)
 			{
 				var items = CreateTabList(ShellItem);
-				_bottomSheetDialog = BottomNavigationViewUtils.CreateMoreBottomSheet(OnMoreItemSelected, Context, items, _bottomView.MaxItemCount);
+				_bottomSheetDialog = BottomNavigationViewUtils.CreateMoreBottomSheet(OnMoreItemSelected, ShellItem.FindMauiContextOnParent(), items, _bottomView.MaxItemCount);
 				_bottomSheetDialog.Show();
 				_bottomSheetDialog.DismissEvent += OnMoreSheetDismissed;
 			}
@@ -385,7 +385,7 @@ namespace Microsoft.Maui.Controls.Compatibility.Platform.Android
 				items,
 				currentIndex,
 				_bottomView,
-				Context);
+				ShellItem.FindMauiContextOnParent());
 
 			UpdateTabBarVisibility();
 		}

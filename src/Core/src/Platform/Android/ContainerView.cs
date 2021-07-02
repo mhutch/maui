@@ -12,7 +12,9 @@ namespace Microsoft.Maui
 {
 	public class ContainerView : LinearLayout, IReloadHandler
 	{
-		private AView? _mainView;
+		AView? _mainView;
+		IView? _view;
+		readonly IMauiContext? _context;
 
 		protected ContainerView(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)
 		{
@@ -42,14 +44,13 @@ namespace Microsoft.Maui
 				}
 			}
 		}
-		IView? _view;
-		readonly IMauiContext? _context;
 
 		public IView? CurrentView
 		{
 			get => _view;
 			set => SetView(value);
 		}
+
 		void SetView(IView? view, bool forceRefresh = false)
 		{
 			if (view == _view && !forceRefresh)
@@ -70,7 +71,5 @@ namespace Microsoft.Maui
 			}
 		}
 		public void Reload() => SetView(CurrentView, true);
-
-
 	}
 }

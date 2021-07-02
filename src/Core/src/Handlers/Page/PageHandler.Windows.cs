@@ -46,6 +46,20 @@ namespace Microsoft.Maui.Handlers
 			return view;
 		}
 
+		void UpdateContent()
+		{
+			if (NativeView == null)
+				return;
+
+			NativeView.Children.Clear();
+
+			if (VirtualView == null)
+				return;
+
+			if (VirtualView.Content != null)
+				NativeView.Children.Add(VirtualView.Content.ToNative(MauiContext));
+		}
+
 		public static void MapTitle(PageHandler handler, IPage page)
 		{
 		}
