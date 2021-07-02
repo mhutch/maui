@@ -141,7 +141,7 @@ namespace Microsoft.Maui.Controls.Platform
 			if (shellSection.CurrentItem == null)
 				throw new InvalidOperationException($"Content not found for active {shellSection}. Title: {shellSection.Title}. Route: {shellSection.Route}.");
 
-			var root = inflater.Inflate(Resource.Layout.rootlayout, null).JavaCast<CoordinatorLayout>();
+			var root = inflater.Inflate(Resource.Layout.shellrootlayout, null).JavaCast<CoordinatorLayout>();
 
 			_toolbar = root.FindViewById<Toolbar>(Resource.Id.maui_toolbar);
 			if (Context.GetActivity() is AppCompatActivity aca)

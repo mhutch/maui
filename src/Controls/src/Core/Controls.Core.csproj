@@ -17,7 +17,7 @@
   <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
     <AndroidResource Include="$(AndroidRoot)Resources\Layout\bottomtablayout.axml" />
     <AndroidResource Include="$(AndroidRoot)Resources\Layout\flyoutcontent.axml" />
-    <AndroidResource Include="$(AndroidRoot)Resources\Layout\rootlayout.axml" />
+    <AndroidResource Include="$(AndroidRoot)Resources\Layout\shellrootlayout.axml" />
     <AndroidResource Include="$(AndroidRoot)Resources\Layout\shellcontent.axml" />
 
 
