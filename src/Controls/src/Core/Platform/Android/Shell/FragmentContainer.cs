@@ -69,7 +69,7 @@ namespace Microsoft.Maui.Controls.Platform
 
 		protected virtual void RecyclePage()
 		{
-			Page.Handler = null;
+			// Page.Handler = null;
 		}
 
 		public override void OnDestroyView()

@@ -9,8 +9,8 @@ namespace Maui.Controls.Sample.Pages
 	{
 		public AppShell(IServiceProvider services, MainViewModel viewModel)
 		{
-			Items.Add(new FlyoutItem() { Title = "Flyout Item 1", Items = { new SemanticsPage(), new MainPage(services, viewModel), } });
-			Items.Add(new FlyoutItem() { Title = "Flyout Item 2", Items = { new MainPage(services, viewModel), new SemanticsPage() } });
+			Items.Add(new FlyoutItem() { Title = "Flyout Item 1", Items = { new SemanticsPage(), new ButtonPage(), } });
+			Items.Add(new FlyoutItem() { Title = "Flyout Item 2", Items = { new ButtonPage(), new SemanticsPage() } });
 		}
 	}
 }
