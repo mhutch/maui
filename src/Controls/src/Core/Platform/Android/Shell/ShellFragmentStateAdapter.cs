@@ -41,43 +41,10 @@ namespace Microsoft.Maui.Controls.Platform
 			return new ShellFragmentContainer(shellContent, _mauiContext) { Arguments = Bundle.Empty };
 		}
 
-		//public override int Count => SectionController.GetItems().Count;
-
-		//public override Fragment GetItem(int position)
-		//{
-		//	var shellContent = SectionController.GetItems()[position];
-		//	return new ShellFragmentContainer(shellContent, _mauiContext) { Arguments = Bundle.Empty };
-		//}
-
 		public override long GetItemId(int position)
 		{
 			return SectionController.GetItems()[position].GetHashCode();
 		}
-
-//#pragma warning disable RCS1168 // Parameter name differs from base name.
-//		public override int GetItemPosition(Object objectValue)
-//#pragma warning restore RCS1168 // Parameter name differs from base name.
-//		{
-//			var fragContainer = objectValue as ShellFragmentContainer;
-//			var shellContent = fragContainer?.ShellContentTab;
-//			if (shellContent != null)
-//			{
-//				int index = SectionController.GetItems().IndexOf(shellContent);
-//				if (index >= 0)
-//					return index;
-//			}
-//			return PositionNone;
-//		}
-
-//		public override ICharSequence GetPageTitleFormatted(int position)
-//		{
-//			return new String(SectionController.GetItems()[position].Title);
-//		}
-
-//		// http://stackoverflow.com/questions/18642890/fragmentstatepageradapter-with-childfragmentmanager-fragmentmanagerimpl-getfra/19099987#19099987
-//		public override void RestoreState(IParcelable state, ClassLoader loader)
-//		{
-//		}
 
 		protected override void Dispose(bool disposing)
 		{

@@ -19,26 +19,14 @@ namespace Microsoft.Maui.Controls.Platform
 	public class ShellSectionView : Fragment, IShellSectionView//, ViewPager.IOnPageChangeListener
 		, AView.IOnClickListener, IShellObservableFragment, IAppearanceObserver, TabLayoutMediator.ITabConfigurationStrategy
 	{
-		#region IOnPageChangeListener
-
-		//void ViewPager.IOnPageChangeListener.OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
-		//{
-		//	if (!_selecting && ShellSection?.CurrentItem != null)
-		//	{
-		//		UpdateCurrentItem(ShellSection.CurrentItem);
-		//	}
-		//}
-
-		//void ViewPager.IOnPageChangeListener.OnPageScrollStateChanged(int state)
-		//{
-		//}
-
+		#region ITabConfigurationStrategy
 
 		void TabLayoutMediator.ITabConfigurationStrategy.OnConfigureTab(TabLayout.Tab tab, int position)
 		{
 			if (_selecting)
 				return;
 
+			tab.SetText(new String(SectionController.GetItems()[position].Title));
 			// TODO : Find a way to make this cancellable
 			var shellSection = ShellSection;
 			var shellContent = SectionController.GetItems()[position];
