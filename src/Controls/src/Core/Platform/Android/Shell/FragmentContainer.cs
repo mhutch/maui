@@ -16,7 +16,7 @@ namespace Microsoft.Maui.Controls.Platform
 		readonly IMauiContext _mauiContext;
 		Action<PageContainer> _onCreateCallback;
 		PageContainer _pageContainer;
-		IViewHandler _viewhandler;
+		INativeViewHandler _viewhandler;
 		//bool _isVisible = false;
 		AView NativeView => _viewhandler?.NativeView as AView;
 
@@ -45,7 +45,7 @@ namespace Microsoft.Maui.Controls.Platform
 			_onCreateCallback = callback;
 		}
 
-		protected virtual PageContainer CreatePageContainer(Context context, IViewHandler child, bool inFragment)
+		protected virtual PageContainer CreatePageContainer(Context context, INativeViewHandler child, bool inFragment)
 		{
 			return new PageContainer(context, child, inFragment);
 		}
@@ -55,7 +55,7 @@ namespace Microsoft.Maui.Controls.Platform
 			if (Page != null)
 			{
 				Page.ToNative(_mauiContext);
-				_viewhandler = Page.Handler;
+				_viewhandler = (INativeViewHandler)Page.Handler;
 
 				_pageContainer = CreatePageContainer(inflater.Context, _viewhandler, true);
 

@@ -21,7 +21,7 @@ namespace Microsoft.Maui.Controls.Platform
 
 		public override Page Page => _page;
 
-		protected override PageContainer CreatePageContainer(Context context, IViewHandler child, bool inFragment)
+		protected override PageContainer CreatePageContainer(Context context, INativeViewHandler child, bool inFragment)
 		{
 			return new ShellPageContainer(context, child, inFragment)
 			{
