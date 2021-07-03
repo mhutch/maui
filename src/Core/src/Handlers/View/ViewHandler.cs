@@ -72,11 +72,7 @@ namespace Microsoft.Maui.Handlers
 		protected abstract void RemoveContainer();
 
 		public virtual bool NeedsContainer =>
-#if WINDOWS
-			false;
-#else
-			VirtualView?.Clip != null;
-#endif
+			VirtualView?.ClipShape != null || VirtualView?.Shadow != null;
 
 		public NativeView? ContainerView { get; private protected set; }
 
