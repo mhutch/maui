@@ -40,8 +40,9 @@
     <Compile Include="$(AndroidRoot)**\*.cs"></Compile>
     <AndroidResource Include="$(AndroidRoot)Resources\Layout\tabbar.axml" Link="Android\Resources\Layout\tabbar.axml" />
     <AndroidResource Include="$(AndroidRoot)Resources\Layout\toolbar.axml" Link="Android\Resources\Layout\toolbar.axml" />
-    <AndroidResource Include="$(AndroidRoot)Resources\Layout\toolbar.axml" Link="Android\Resources\Layout\rootlayout.axml" />
+    <AndroidResource Include="$(AndroidRoot)Resources\Layout\rootlayout.axml" Link="Android\Resources\Layout\rootlayout.axml" />
     <AndroidResource Include="$(AndroidRoot)Resources\values\attrs.xml" Link="Android\Resources\values\attrs.xml" />
+    <AndroidResource Include="$(AndroidRoot)Resources\values\styles.xml" Link="Android\Resources\values\styles.xml" />
     <ProjectReference Include="..\..\Android.FormsViewGroup\src\Compatibility.Android.FormsViewGroup-net6.csproj" />
 
     <Compile Remove="$(AndroidRoot)AppCompat\Resource.cs" />
