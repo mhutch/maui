@@ -38,6 +38,11 @@
                 <Entry 
                     Text="I am read only" 
                     IsReadOnly="True"/>
+                <Label
+                    Text="Keyboard"
+                    Style="{StaticResource Headline}" />
+                <Entry 
+                    Keyboard="Numeric"/>
             </VerticalStackLayout>
         </ScrollView>
     </views:BasePage.Content>

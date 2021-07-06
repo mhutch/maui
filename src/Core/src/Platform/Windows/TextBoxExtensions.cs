@@ -38,7 +38,7 @@ namespace Microsoft.Maui
 		{
 			textBox.CharacterSpacing = textStyle.CharacterSpacing.ToEm();
 		}
-		
+
 		public static void UpdateCharacterSpacing(this MauiTextBox textBox, IEntry entry)
 		{
 			textBox.CharacterSpacing = entry.CharacterSpacing.ToEm();
@@ -47,7 +47,7 @@ namespace Microsoft.Maui
 		public static void UpdateReturnType(this MauiTextBox textBox, IEntry entry)
 		{
 			textBox.InputScope = entry.ReturnType.ToNative();
-    	}
+		}
 
 		public static void UpdateClearButtonVisibility(this MauiTextBox textBox, IEntry entry)
 		{
@@ -124,6 +124,28 @@ namespace Microsoft.Maui
 		public static void UpdateIsPassword(this MauiTextBox textBox, IEntry entry)
 		{
 			textBox.IsPassword = entry.IsPassword;
+		}
+
+		public static void UpdateKeyboard(this MauiTextBox textBox, IEntry entry)
+		{
+			textBox.UpdateInputScope(entry);
+		}
+
+		internal static void UpdateInputScope(this MauiTextBox textBox, ITextInput textInput)
+		{
+			if (textInput.Keyboard is CustomKeyboard custom)
+			{
+				textBox.IsTextPredictionEnabled = (custom.Flags & KeyboardFlags.Suggestions) != 0;
+				textBox.IsSpellCheckEnabled = (custom.Flags & KeyboardFlags.Spellcheck) != 0;
+			}
+			else
+			{
+				textBox.IsTextPredictionEnabled = textInput.IsTextPredictionEnabled;
+
+				// TODO: Update IsSpellCheckEnabled
+			}
+
+			textBox.InputScope = textInput.Keyboard.ToInputScope();
 		}
 	}
 }
